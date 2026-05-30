@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TET-2 ગુજરાતી અભ્યાસ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@300;400;500;600;700&family=Noto+Serif+Gujarati:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-icon">📚</div>
+      <div>
+        <div class="logo-text">TET-2 ગુજરાતી</div>
+        <div class="logo-sub">AI Powered Study</div>
+      </div>
+    </div>
+    <div class="header-badge">✨ Groq AI</div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>📖 TET-2 સ્માર્ટ અભ્યાસ</h1>
+    <p>AI ની મદદથી ગુજરાતીમાં Deep Notes મેળવો અને MCQ Quiz આપી પ્રેક્ટિસ કરો</p>
+    <div class="tab-switcher">
+      <button class="tab-btn active" onclick="App.switchTab('notes')" id="notesTabBtn">📝 Notes</button>
+      <button class="tab-btn" onclick="App.switchTab('quiz')" id="quizTabBtn">🧩 MCQ Quiz</button>
+    </div>
+  </div>
+
+  <!-- NOTES PANEL -->
+  <div class="panel active" id="notesPanel">
+    <div class="section-title">📚 વિષય પસંદ કરો</div>
+    <div class="topics-grid" id="notesTopicsGrid"></div>
+    <div class="custom-input-area">
+      <label>📝 અથવા પોતાનો વિષય લખો</label>
+      <div class="input-row">
+        <input type="text" id="customNotesTopic" placeholder="દા.ત. ત્રિકોણમિતિ, ગુજરાતી સાહિત્ય..." />
+      </div>
+    </div>
+    <div class="action-row">
+      <button class="btn-primary" onclick="generateNotes()" id="genNotesBtn">✨ Deep Notes Generate કરો</button>
+      <button class="btn-outline" onclick="clearNotes()">🗑️ Clear</button>
+    </div>
+    <div id="notesOutput"></div>
+  </div>
+
+  <!-- QUIZ PANEL -->
+  <div class="panel" id="quizPanel">
+    <div class="section-title">🧩 Quiz Topic</div>
+    <div class="topics-grid" id="quizTopicsGrid"></div>
+    <div class="custom-input-area">
+      <label>📝 અથવા પોતાનો Quiz Topic</label>
+      <div class="input-row">
+        <input type="text" id="customQuizTopic" placeholder="દા.ત. ગુજરાત નો ભૂગોળ..." />
+      </div>
+    </div>
+    <div class="mcq-settings">
+      <div class="settings-row">
+        <div class="setting-group">
+          <label>❓ પ્રશ્નો</label>
+          <select id="qCount">
+            <option value="5">5 પ્રશ્નો</option>
+            <option value="10" selected>10 પ્રશ્નો</option>
+            <option value="15">15 પ્રશ્નો</option>
+          </select>
+        </div>
+        <div class="setting-group">
+          <label>📊 Level</label>
+          <select id="qLevel">
+            <option value="સરળ">સરળ (Easy)</option>
+            <option value="મધ્યમ" selected>મધ્યમ (Medium)</option>
+            <option value="અઘરો">અઘરો (Hard)</option>
+          </select>
+        </div>
+        <button class="btn-green" onclick="startQuiz()" id="genQuizBtn">🚀 Quiz Start</button>
+      </div>
+    </div>
+    <div id="quizOutput"></div>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+<script src="notes.js"></script>
+<script src="quiz.js"></script>
+<script>
+  App.init();
+</script>
+</body>
+</html>

@@ -1,0 +1,436 @@
+:root {
+  --saffron: #FF6B00;
+  --saffron-light: #FF8C33;
+  --green: #138808;
+  --green-light: #1aad0a;
+  --navy: #0A1628;
+  --navy-mid: #152238;
+  --card: #0F1E35;
+  --card-light: #162841;
+  --white: #F5F0E8;
+  --muted: #8A9BB5;
+  --border: rgba(255,107,0,0.2);
+  --gold: #FFD700;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Noto Sans Gujarati', sans-serif;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(255,107,0,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(19,136,8,0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+header {
+  position: relative;
+  z-index: 10;
+  background: rgba(10,22,40,0.97);
+  backdrop-filter: blur(20px);
+  border-bottom: 2px solid var(--saffron);
+  padding: 0 2rem;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.logo { display: flex; align-items: center; gap: 12px; }
+
+.logo-icon {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--saffron), var(--green));
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 4px 15px rgba(255,107,0,0.4);
+}
+
+.logo-text {
+  font-family: 'Noto Serif Gujarati', serif;
+  font-size: 1.3rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--saffron), var(--gold));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+.logo-sub { font-size: 0.7rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
+
+.header-badge {
+  background: linear-gradient(135deg, var(--saffron), #ff4500);
+  color: white; padding: 6px 14px; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 600;
+  box-shadow: 0 4px 12px rgba(255,107,0,0.4);
+}
+
+.container {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto; padding: 2rem;
+}
+
+.hero {
+  text-align: center; padding: 3rem 0 2rem;
+  animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1 {
+  font-family: 'Noto Serif Gujarati', serif;
+  font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700;
+  background: linear-gradient(135deg, var(--saffron) 0%, var(--gold) 50%, var(--green-light) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  line-height: 1.3; margin-bottom: 0.8rem;
+}
+
+.hero p { color: var(--muted); font-size: 1rem; max-width: 600px; margin: 0 auto 2rem; line-height: 1.7; }
+
+.tab-switcher {
+  display: inline-flex;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px; padding: 6px; gap: 4px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.tab-btn {
+  padding: 12px 28px; border: none; border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Noto Sans Gujarati', sans-serif;
+  font-size: 1rem; font-weight: 600;
+  transition: all 0.3s ease;
+  background: transparent; color: var(--muted);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--saffron), var(--saffron-light));
+  color: white; box-shadow: 0 4px 15px rgba(255,107,0,0.4);
+}
+
+.tab-btn:hover:not(.active) { background: rgba(255,107,0,0.1); color: var(--white); }
+
+.panel { display: none; animation: fadeInUp 0.5s ease; }
+.panel.active { display: block; }
+
+.section-title {
+  font-family: 'Noto Serif Gujarati', serif;
+  font-size: 1.4rem; font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 10px;
+}
+
+.section-title::after {
+  content: ''; flex: 1; height: 2px;
+  background: linear-gradient(90deg, var(--saffron), transparent);
+  border-radius: 2px;
+}
+
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px; margin-bottom: 2rem;
+}
+
+.topic-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px; padding: 16px;
+  cursor: pointer; transition: all 0.3s ease;
+  text-align: center; position: relative; overflow: hidden;
+}
+
+.topic-card:hover {
+  border-color: var(--saffron);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(255,107,0,0.2);
+}
+
+.topic-card.selected {
+  border-color: var(--saffron);
+  background: rgba(255,107,0,0.12);
+  box-shadow: 0 0 0 2px rgba(255,107,0,0.35);
+}
+
+.topic-emoji { font-size: 1.8rem; margin-bottom: 8px; display: block; }
+.topic-name { font-size: 0.88rem; font-weight: 600; color: var(--white); line-height: 1.4; }
+
+.custom-input-area {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem;
+}
+
+.custom-input-area label { display: block; color: var(--muted); font-size: 0.85rem; margin-bottom: 8px; }
+
+.input-row { display: flex; gap: 10px; }
+
+input[type="text"] {
+  flex: 1;
+  background: var(--navy); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 18px;
+  color: var(--white);
+  font-family: 'Noto Sans Gujarati', sans-serif; font-size: 1rem;
+  outline: none; transition: border-color 0.3s;
+}
+
+input[type="text"]:focus { border-color: var(--saffron); box-shadow: 0 0 0 3px rgba(255,107,0,0.15); }
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--saffron), var(--saffron-light));
+  color: white; border: none; border-radius: 12px;
+  padding: 14px 28px;
+  font-family: 'Noto Sans Gujarati', sans-serif; font-size: 1rem; font-weight: 700;
+  cursor: pointer; transition: all 0.3s ease; white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(255,107,0,0.3);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,107,0,0.5); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.btn-green {
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  color: white; border: none; border-radius: 12px;
+  padding: 14px 28px;
+  font-family: 'Noto Sans Gujarati', sans-serif; font-size: 1rem; font-weight: 700;
+  cursor: pointer; transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(19,136,8,0.3);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+
+.btn-green:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(19,136,8,0.5); }
+.btn-green:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.btn-outline {
+  background: transparent; color: var(--saffron);
+  border: 2px solid var(--saffron); border-radius: 12px;
+  padding: 12px 24px;
+  font-family: 'Noto Sans Gujarati', sans-serif; font-size: 0.95rem; font-weight: 600;
+  cursor: pointer; transition: all 0.3s ease;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+
+.btn-outline:hover { background: rgba(255,107,0,0.1); transform: translateY(-2px); }
+
+.btn-icon {
+  background: var(--card-light); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 14px;
+  color: var(--muted); cursor: pointer; font-size: 1rem;
+  transition: all 0.3s; display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Noto Sans Gujarati', sans-serif;
+}
+
+.btn-icon:hover { border-color: var(--saffron); color: var(--white); background: rgba(255,107,0,0.1); }
+
+.action-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 2rem; }
+
+.mcq-settings {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem;
+}
+
+.settings-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; }
+.setting-group { flex: 1; min-width: 140px; }
+.setting-group label { display: block; color: var(--muted); font-size: 0.82rem; margin-bottom: 6px; }
+
+select {
+  width: 100%;
+  background: var(--navy); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 14px;
+  color: var(--white);
+  font-family: 'Noto Sans Gujarati', sans-serif; font-size: 0.95rem;
+  outline: none; cursor: pointer; transition: border-color 0.3s;
+}
+
+select:focus { border-color: var(--saffron); }
+
+/* LOADING */
+.loading-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 3rem; text-align: center;
+}
+
+.spinner {
+  width: 50px; height: 50px;
+  border: 3px solid rgba(255,107,0,0.2); border-top-color: var(--saffron);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 1.5rem;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.loading-text { font-size: 1.1rem; color: var(--muted); }
+
+.loading-dots::after {
+  content: '';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: ''; }
+  40% { content: '.'; }
+  60% { content: '..'; }
+  80%, 100% { content: '...'; }
+}
+
+/* NOTES */
+.notes-container {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: fadeInUp 0.6s ease;
+}
+
+.notes-header {
+  background: linear-gradient(135deg, rgba(255,107,0,0.18), rgba(19,136,8,0.08));
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+
+.notes-title { font-family: 'Noto Serif Gujarati', serif; font-size: 1.3rem; font-weight: 700; color: var(--saffron); }
+.notes-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.notes-body { padding: 2rem; line-height: 2; font-size: 1rem; color: var(--white); }
+.notes-body h1 { font-family: 'Noto Serif Gujarati', serif; color: var(--saffron); font-size: 1.6rem; margin: 1.5rem 0 1rem; border-bottom: 2px solid var(--border); padding-bottom: 8px; }
+.notes-body h2 { font-family: 'Noto Serif Gujarati', serif; color: var(--saffron); font-size: 1.3rem; margin: 1.4rem 0 0.7rem; }
+.notes-body h3 { font-family: 'Noto Serif Gujarati', serif; color: var(--gold); font-size: 1.1rem; margin: 1.2rem 0 0.6rem; }
+.notes-body p { margin-bottom: 1rem; }
+.notes-body ul, .notes-body ol { padding-left: 1.8rem; margin-bottom: 1rem; }
+.notes-body li { margin-bottom: 0.6rem; }
+.notes-body strong { color: var(--gold); font-weight: 700; }
+.notes-body em { color: #c8d5e8; font-style: italic; }
+.notes-body blockquote {
+  border-left: 4px solid var(--saffron);
+  padding: 12px 20px; margin: 1rem 0;
+  background: rgba(255,107,0,0.07);
+  border-radius: 0 12px 12px 0; color: #c8d5e8;
+}
+.notes-body table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; border-radius: 12px; overflow: hidden; }
+.notes-body th { background: rgba(255,107,0,0.2); color: var(--saffron); padding: 12px 16px; text-align: left; font-weight: 700; border: 1px solid var(--border); }
+.notes-body td { padding: 10px 16px; border: 1px solid var(--border); background: rgba(15,30,53,0.5); }
+.notes-body tr:hover td { background: rgba(255,107,0,0.05); }
+
+/* QUIZ */
+.quiz-header {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+
+.quiz-progress { display: flex; align-items: center; gap: 12px; }
+
+.progress-bar { width: 200px; height: 8px; background: var(--navy); border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--saffron), var(--gold)); border-radius: 4px; transition: width 0.5s ease; }
+
+.quiz-score-display { display: flex; gap: 12px; }
+.score-pill { background: rgba(19,136,8,0.2); border: 1px solid rgba(19,136,8,0.4); color: var(--green-light); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; }
+.score-pill.wrong { background: rgba(220,38,38,0.2); border-color: rgba(220,38,38,0.4); color: #f87171; }
+
+.question-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 20px; padding: 2rem; margin-bottom: 1.5rem;
+  animation: fadeInUp 0.4s ease;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+
+.q-number { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--saffron); font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+.q-number::before { content: ''; width: 4px; height: 16px; background: var(--saffron); border-radius: 2px; display: inline-block; }
+.q-text { font-size: 1.15rem; font-weight: 600; line-height: 1.8; margin-bottom: 1.5rem; }
+
+.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 600px) { .options-grid { grid-template-columns: 1fr; } }
+
+.option-btn {
+  background: var(--card-light); border: 2px solid var(--border);
+  border-radius: 12px; padding: 14px 18px;
+  text-align: left; cursor: pointer;
+  font-family: 'Noto Sans Gujarati', sans-serif; font-size: 0.95rem;
+  color: var(--white); transition: all 0.25s ease;
+  display: flex; align-items: flex-start; gap: 10px; line-height: 1.6;
+}
+
+.option-btn:hover:not(:disabled) { border-color: var(--saffron); background: rgba(255,107,0,0.08); transform: translateX(4px); }
+.option-btn.correct { border-color: var(--green); background: rgba(19,136,8,0.15); color: #86efac; }
+.option-btn.wrong { border-color: #dc2626; background: rgba(220,38,38,0.12); color: #fca5a5; }
+.option-btn.reveal { border-color: var(--green); background: rgba(19,136,8,0.08); }
+.option-btn:disabled { cursor: not-allowed; }
+
+.opt-label {
+  min-width: 26px; height: 26px;
+  background: rgba(255,107,0,0.2); color: var(--saffron);
+  border-radius: 6px; display: inline-flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 700; font-family: 'Space Mono', monospace;
+  flex-shrink: 0; margin-top: 2px;
+}
+
+.explanation-box {
+  margin-top: 1.2rem;
+  background: rgba(255,215,0,0.07); border: 1px solid rgba(255,215,0,0.2);
+  border-radius: 12px; padding: 14px 18px;
+  color: #fde68a; font-size: 0.92rem; line-height: 1.8;
+  display: none; animation: fadeInUp 0.4s ease;
+}
+
+.explanation-box.show { display: block; }
+.explanation-label { font-weight: 700; color: var(--gold); margin-bottom: 6px; font-size: 0.85rem; letter-spacing: 0.5px; }
+
+.quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+
+/* RESULT */
+.result-card {
+  background: var(--card); border: 2px solid var(--saffron);
+  border-radius: 24px; padding: 3rem 2rem; text-align: center;
+  box-shadow: 0 20px 60px rgba(255,107,0,0.2);
+  animation: fadeInUp 0.6s ease;
+}
+
+.result-emoji { font-size: 4rem; margin-bottom: 1rem; display: block; }
+.result-score { font-family: 'Space Mono', monospace; font-size: 4rem; font-weight: 700; background: linear-gradient(135deg, var(--saffron), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.result-text { font-size: 1.2rem; font-family: 'Noto Serif Gujarati', serif; font-weight: 700; margin: 0.5rem 0 1.5rem; }
+.result-breakdown { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.breakdown-item { text-align: center; }
+.breakdown-num { font-family: 'Space Mono', monospace; font-size: 2rem; font-weight: 700; }
+.breakdown-num.green { color: var(--green-light); }
+.breakdown-num.red { color: #f87171; }
+.breakdown-label { font-size: 0.85rem; color: var(--muted); margin-top: 2px; }
+
+.error-card { background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.3); border-radius: 16px; padding: 1.5rem 2rem; color: #fca5a5; font-size: 0.95rem; }
+
+.hidden { display: none !important; }
+
+@media (max-width: 768px) {
+  .container { padding: 1rem; }
+  .topics-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .notes-header { flex-direction: column; align-items: flex-start; }
+  .progress-bar { width: 120px; }
+  .settings-row { flex-direction: column; }
+}
+
+@media print {
+  header, .tab-switcher, .topics-grid, .custom-input-area, .action-row { display: none !important; }
+  body { background: white; color: black; }
+  .notes-body { color: black; }
+  .notes-body h1, .notes-body h2, .notes-body h3 { color: #c05500; }
+}
